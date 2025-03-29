@@ -2,6 +2,7 @@
 import React from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import AIChatWidget from './AIChatWidget';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         </main>
       </div>
+      <AIChatWidget />
     </div>
   );
 };
