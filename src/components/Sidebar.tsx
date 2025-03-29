@@ -9,7 +9,8 @@ import {
   Calculator, 
   CalendarClock,
   ChartBar,
-  Settings
+  Settings,
+  Receipt
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -21,6 +22,7 @@ const Sidebar = () => {
     { path: '/costing', label: 'Costing', icon: <Calculator size={20} /> },
     { path: '/budgeting', label: 'Budgeting', icon: <CalendarClock size={20} /> },
     { path: '/reports', label: 'Reports', icon: <ChartBar size={20} /> },
+    { path: '/invoices', label: 'Invoices', icon: <Receipt size={20} /> },
   ];
 
   return (
