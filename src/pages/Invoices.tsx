@@ -8,6 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { useToast } from '@/hooks/use-toast';
 import InvoiceUploader from '@/components/InvoiceUploader';
 import InvoiceViewer from '@/components/InvoiceViewer';
+import InvoiceCreator from '@/components/InvoiceCreator';
+import { AIFeatureAdvice } from '@/components/AIFeatureAdvice';
 
 export interface InvoiceData {
   id: string;
@@ -42,6 +44,10 @@ const Invoices = () => {
     });
   };
 
+  const handleInvoiceCreated = (invoiceData: InvoiceData) => {
+    setUploadedInvoices(prev => [...prev, invoiceData]);
+  };
+
   const handleVerifyInvoice = (id: string) => {
     setUploadedInvoices(prev => 
       prev.map(invoice => 
@@ -57,10 +63,24 @@ const Invoices = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold tracking-tight">Invoice Manager</h2>
-        <Button>
-          Export Data
-        </Button>
+        <div className="flex items-center">
+          <h2 className="text-3xl font-bold tracking-tight">Invoice Manager</h2>
+          <AIFeatureAdvice
+            title="Invoice Management Tips"
+            description="Use our AI-powered invoice system to automate your billing process. Upload existing invoices or create new ones."
+            suggestions={[
+              "Set up recurring invoices for regular clients",
+              "Enable automatic payment reminders for overdue invoices",
+              "Create invoice templates for faster billing"
+            ]}
+          />
+        </div>
+        <div className="flex space-x-2">
+          <InvoiceCreator onInvoiceCreated={handleInvoiceCreated} />
+          <Button variant="outline">
+            Export Data
+          </Button>
+        </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -71,8 +91,8 @@ const Invoices = () => {
         <div className="md:col-span-2">
           <Card>
             <CardHeader>
-              <CardTitle>Uploaded Invoices</CardTitle>
-              <CardDescription>All your processed invoices appear here</CardDescription>
+              <CardTitle>Invoices</CardTitle>
+              <CardDescription>All your invoices appear here</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="rounded-md border">
@@ -91,7 +111,7 @@ const Invoices = () => {
                     {uploadedInvoices.length === 0 ? (
                       <TableRow>
                         <TableCell colSpan={6} className="text-center text-muted-foreground py-6">
-                          No invoices uploaded yet. Upload an invoice to get started.
+                          No invoices yet. Upload or create an invoice to get started.
                         </TableCell>
                       </TableRow>
                     ) : (

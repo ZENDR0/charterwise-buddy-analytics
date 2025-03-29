@@ -23,7 +23,11 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         </main>
       </div>
-      {aiChatbotEnabled && <AIChatWidget />}
+      {aiChatbotEnabled && (
+        <div className="fixed bottom-4 right-4 z-50">
+          <AIChatWidget />
+        </div>
+      )}
     </div>
   );
 };
