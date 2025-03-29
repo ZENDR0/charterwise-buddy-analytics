@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Custom colors for the application
+				chartBlue: '#3b82f6',
+				chartIndigo: '#6366f1',
+				chartPurple: '#8b5cf6',
+				chartPink: '#ec4899',
+				chartRed: '#ef4444',
+				chartOrange: '#f97316',
+				chartYellow: '#f59e0b',
+				chartGreen: '#10b981',
+				chartTeal: '#14b8a6',
+				chartCyan: '#06b6d4',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
