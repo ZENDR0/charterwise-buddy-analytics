@@ -3,12 +3,15 @@ import React from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import AIChatWidget from './AIChatWidget';
+import { useAI } from '@/contexts/AIContext';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const { aiChatbotEnabled } = useAI();
+  
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -20,7 +23,7 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         </main>
       </div>
-      <AIChatWidget />
+      {aiChatbotEnabled && <AIChatWidget />}
     </div>
   );
 };

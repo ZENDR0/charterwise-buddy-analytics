@@ -3,8 +3,22 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { useAI } from '@/contexts/AIContext';
 
 const Settings = () => {
+  const { aiAdviceEnabled, aiChatbotEnabled, setAIAdviceEnabled, setAIChatbotEnabled } = useAI();
+
+  const handleAIAdviceToggle = (checked: boolean) => {
+    setAIAdviceEnabled(checked);
+    toast(checked ? "AI Advice enabled" : "AI Advice disabled");
+  };
+
+  const handleAIChatbotToggle = (checked: boolean) => {
+    setAIChatbotEnabled(checked);
+    toast(checked ? "AI Chat Widget enabled" : "AI Chat Widget disabled");
+  };
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">Settings</h1>
@@ -20,7 +34,11 @@ const Settings = () => {
               <Label htmlFor="aiAdvice">AI Feature Advice</Label>
               <p className="text-sm text-muted-foreground">Show AI suggestions and advice for each feature</p>
             </div>
-            <Switch id="aiAdvice" defaultChecked />
+            <Switch 
+              id="aiAdvice" 
+              checked={aiAdviceEnabled}
+              onCheckedChange={handleAIAdviceToggle}
+            />
           </div>
           
           <div className="flex items-center justify-between">
@@ -28,7 +46,11 @@ const Settings = () => {
               <Label htmlFor="aiChatbot">AI Chat Widget</Label>
               <p className="text-sm text-muted-foreground">Enable the AI chat assistant in the corner</p>
             </div>
-            <Switch id="aiChatbot" defaultChecked />
+            <Switch 
+              id="aiChatbot" 
+              checked={aiChatbotEnabled}
+              onCheckedChange={handleAIChatbotToggle}
+            />
           </div>
         </CardContent>
       </Card>
